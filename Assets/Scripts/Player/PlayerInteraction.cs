@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -22,7 +23,7 @@ public class PlayerInteraction : MonoBehaviour
         if (DialogueManager.instance.isDialogueActive) return;
 
         //'Z' 키를 눌렀을 때 레이캐스트
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             CheckForInteractable();
         }
@@ -35,9 +36,13 @@ public class PlayerInteraction : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name + "과 상호작용");
-            // 대화창 활성화
-            DialogueManager.instance.StartDialogue();
+            // 2. 맞은 대상에게 NPC1DATA가 있는지 확인
+            NPC1DATA npc = hit.collider.GetComponent<NPC1DATA>();
+
+            if (npc != null)
+            {
+                DialogueManager.instance.StartDialogue(npc.npcDialogue);
+            }
         }
     }
 
