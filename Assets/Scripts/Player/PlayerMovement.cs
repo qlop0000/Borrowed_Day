@@ -8,7 +8,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
+    Animator anim;
 
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Awake()
     {
         // 오브젝트에 붙어있는 Rigidbody2D 컴포넌트 가져오기
@@ -20,11 +25,21 @@ public class PlayerMovement : MonoBehaviour
         if (!canMove)
         {
             movement = Vector2.zero; // 움직임 멈춤
+            anim.SetFloat("Speed", 0); // 대화 중에 애니메이션 멈추기
             return;
         }
         // 입력
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        
+        anim.SetFloat("Speed", movement.magnitude);
+
+        float hInput = Input.GetAxisRaw("Horizontal");
+        // 좌우 반전 (SpriteRenderer의 FlipX 사용)
+        if (hInput != 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = (hInput < 0);
+        }
     }
 
     void FixedUpdate()

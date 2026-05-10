@@ -366,13 +366,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.40625, y: 0.71875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.4, y: 0.7}
   m_EdgeRadius: 0
 --- !u!212 &468945792
 SpriteRenderer:
@@ -418,8 +418,8 @@ SpriteRenderer:
   m_SortingLayerID: -256064825
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.4198113, b: 0.4198113, a: 1}
+  m_Sprite: {fileID: 5055529918643870749, guid: 26aece0d4eef2b947961b6ab4d76041f, type: 3}
+  m_Color: {r: 0.18867925, g: 0.754717, b: 0.24792698, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -439,7 +439,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -460,10 +460,10 @@ MonoBehaviour:
   npcDialogue:
   - name: Enfer
     context: "\uBC18\uAC00\uC6CC"
-    portrait: {fileID: -7927750730911590547, guid: f8812fc2d8a6b244cb924c0f0016d2ae, type: 3}
-  - name: "\uB2C8"
+    portrait: {fileID: -4539461461466194853, guid: db331150492a8e64590d0b8980cc6892, type: 3}
+  - name: "\uB098"
     context: "\uADF8\uB798 \uBC18\uAC11\uAD6C\uB098"
-    portrait: {fileID: 3616400437380048829, guid: da83442fb312d654ab57068397eb8ed0, type: 3}
+    portrait: {fileID: -1559372762382617786, guid: ef75faa04b82e004ba5e8b7a076ff57b, type: 3}
 --- !u!1 &475818861
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,12 +525,12 @@ SpriteRenderer:
   m_SortingLayerID: 2147051431
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca861424022e68b4c8906c2c2aef02a0, type: 3}
   m_Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 2
+  m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -658,7 +658,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 40
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -962,7 +962,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b97d6a28f2f8ed499094f870de03f13, type: 2}
-  m_sharedMaterial: {fileID: -5353585862238266956, guid: 495c8fee735fff344ad27796a654be44, type: 2}
+  m_sharedMaterial: {fileID: -5856813074851263647, guid: 7b97d6a28f2f8ed499094f870de03f13, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1148,8 +1148,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 400}
-  m_SizeDelta: {x: 400, y: 600}
+  m_AnchoredPosition: {x: 326.37878, y: 415.7014}
+  m_SizeDelta: {x: 371.439, y: 887.6511}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497609928
 MonoBehaviour:
@@ -1173,9 +1173,9 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_text: "\uB098\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b97d6a28f2f8ed499094f870de03f13, type: 2}
-  m_sharedMaterial: {fileID: -5353585862238266956, guid: 495c8fee735fff344ad27796a654be44, type: 2}
+  m_sharedMaterial: {fileID: -5856813074851263647, guid: 7b97d6a28f2f8ed499094f870de03f13, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1374,12 +1374,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1455,8 +1455,8 @@ Transform:
   m_GameObject: {fileID: 2023321202}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 0.025, z: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 10, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475818863}
@@ -1576,6 +1576,7 @@ GameObject:
   - component: {fileID: 2096430537}
   - component: {fileID: 2096430541}
   - component: {fileID: 2096430542}
+  - component: {fileID: 2096430543}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1648,13 +1649,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.13, y: 0.23}
+    oldSize: {x: 0.40625, y: 0.71875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.14, y: 0.25}
+  m_Size: {x: 0.4, y: 0.68}
   m_EdgeRadius: 0
 --- !u!212 &2096430539
 SpriteRenderer:
@@ -1700,7 +1701,7 @@ SpriteRenderer:
   m_SortingLayerID: 261641289
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3616400437380048829, guid: da83442fb312d654ab57068397eb8ed0, type: 3}
+  m_Sprite: {fileID: 5055529918643870749, guid: 26aece0d4eef2b947961b6ab4d76041f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1739,7 +1740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5042573394b34e94599847b0f4d6e5b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 30
   canMove: 1
 --- !u!114 &2096430542
 MonoBehaviour:
@@ -1753,11 +1754,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde96efda67039b4683b16ff84b1d694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkDistance: 1
+  checkDistance: 3
   interactableLayer:
     serializedVersion: 2
     m_Bits: 128
   dialoguePanel: {fileID: 953847626}
+--- !u!95 &2096430543
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096430536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3696af36305e59d4c9902a44e19f066f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
