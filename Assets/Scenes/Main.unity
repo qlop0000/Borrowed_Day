@@ -366,13 +366,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.40625, y: 0.71875}
+    oldSize: {x: 0.46875, y: 0.59375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.4, y: 0.7}
+  m_Size: {x: 0.42, y: 0.55}
   m_EdgeRadius: 0
 --- !u!212 &468945792
 SpriteRenderer:
@@ -418,8 +418,8 @@ SpriteRenderer:
   m_SortingLayerID: -256064825
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5055529918643870749, guid: 26aece0d4eef2b947961b6ab4d76041f, type: 3}
-  m_Color: {r: 0.18867925, g: 0.754717, b: 0.24792698, a: 1}
+  m_Sprite: {fileID: 3602206385119812981, guid: 427ff77bb37972f4b96da299c655e4c0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -439,7 +439,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -453,17 +453,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 468945790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 164d19638639a70408d568fbf6a0b49a, type: 3}
+  m_Script: {fileID: 11500000, guid: 115cc02395424e040a095b99969b31d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Enfer
   npcDialogue:
   - name: Enfer
-    context: "\uBC18\uAC00\uC6CC"
-    portrait: {fileID: -4539461461466194853, guid: db331150492a8e64590d0b8980cc6892, type: 3}
+    context: "\uC548\uB155\uBC18\uAC00\uC6CC"
+    portrait: {fileID: 7484915040886628074, guid: b10a76645714b39499b384f57d5a2ef9, type: 3}
+    isFlip: 0
   - name: "\uB098"
-    context: "\uADF8\uB798 \uBC18\uAC11\uAD6C\uB098"
-    portrait: {fileID: -1559372762382617786, guid: ef75faa04b82e004ba5e8b7a076ff57b, type: 3}
+    context: "\uB10C \uB204\uAD6C\uB2C8"
+    portrait: {fileID: 569012296316782507, guid: dc4a0da4d0d9d8148a90c76d14d0f1c2, type: 3}
+    isFlip: 1
+  - name: Enfer
+    context: "\uB098\uB294 \uC0AC\uC2E0\uC774\uC57C.\n\uB110 \uB370\uB9AC\uACE0 \uAC00\uB824\uACE0
+      \uC654\uC9C0"
+    portrait: {fileID: 1658929787787551446, guid: b10a76645714b39499b384f57d5a2ef9, type: 3}
+    isFlip: 0
+  - name: "\uB098"
+    context: "\uB108\uAC00 \uC5B4\uB51C \uBD10\uC11C \uC0AC\uC2E0\uC774\uB2C8?"
+    portrait: {fileID: 8360884456965288636, guid: dc4a0da4d0d9d8148a90c76d14d0f1c2, type: 3}
+    isFlip: 1
+  - name: Enfer
+    context: "\uC0AC\uC2E0 \uB9DE\uAC70\uB4E0?"
+    portrait: {fileID: -5698928056684530628, guid: b10a76645714b39499b384f57d5a2ef9, type: 3}
+    isFlip: 0
+  flipX: 0
 --- !u!1 &475818861
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +546,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1455,7 +1471,7 @@ Transform:
   m_GameObject: {fileID: 2023321202}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 10, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
