@@ -1,6 +1,6 @@
+using TMPro;         // TextMeshPro 사용을 위해 필요
 using UnityEngine;
 using UnityEngine.UI; // Image 컴포넌트 사용을 위해 필요
-using TMPro;         // TextMeshPro 사용을 위해 필요
 
 [System.Serializable]
 public class DialogueLine
@@ -8,7 +8,8 @@ public class DialogueLine
     public string name;      // 말하는 주체 이름
     [TextArea(3, 10)]
     public string context;   // 대사 내용
-    public Sprite portrait;  // 나중에 넣을 초상화 (지금은 비워둬도 됨)
+    public Sprite portrait;  // 일러스트
+    public bool isFlip;      // 반전 여부
 }
 
 public class DialogueManager : MonoBehaviour
@@ -43,7 +44,7 @@ public class DialogueManager : MonoBehaviour
         DisplayNextLine();
     }
 
-    // 다음 대사를 화면에 출력하는 핵심 기능
+    // 다음 대사를 화면에 출력하는 기능
     public void DisplayNextLine()
     {
         // 더 이상 보여줄 대사가 없다면 종료
@@ -64,6 +65,15 @@ public class DialogueManager : MonoBehaviour
         {
             portraitImage.sprite = currentLine.portrait;
             portraitImage.gameObject.SetActive(true);
+
+            if (currentLine.isFlip)
+            {
+                portraitImage.rectTransform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                portraitImage.rectTransform.localScale = new Vector3(1, 1, 1);
+            }
         }
         else
         {

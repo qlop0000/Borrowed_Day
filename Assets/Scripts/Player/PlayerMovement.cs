@@ -7,17 +7,20 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
+    private SpriteRenderer spriteRenderer;
 
     Animator anim;
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        
     }
     void Awake()
     {
         // 오브젝트에 붙어있는 Rigidbody2D 컴포넌트 가져오기
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // 캐싱
     }
 
     void Update()
@@ -38,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         // 좌우 반전 (SpriteRenderer의 FlipX 사용)
         if (hInput != 0)
         {
-            GetComponent<SpriteRenderer>().flipX = (hInput < 0);
+            spriteRenderer.flipX = (hInput < 0); // 캐싱된 변수 사용
         }
     }
 

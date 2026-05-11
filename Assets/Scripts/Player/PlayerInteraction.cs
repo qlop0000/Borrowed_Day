@@ -36,12 +36,12 @@ public class PlayerInteraction : MonoBehaviour
 
         if (hit.collider != null)
         {
-            // 2. 맞은 대상에게 NPC1DATA가 있는지 확인
-            NPC1DATA npc = hit.collider.GetComponent<NPC1DATA>();
+            // 맞은 대상에게 NPC1DATA가 있는지 확인
+            InteractableObject interactable = hit.collider.GetComponent<InteractableObject>();
 
-            if (npc != null)
+            if (interactable != null)
             {
-                DialogueManager.instance.StartDialogue(npc.npcDialogue);
+                interactable.Interact(); // 그 사물에 맞는 행동 실행
             }
         }
     }
