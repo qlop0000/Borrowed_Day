@@ -1,0 +1,21 @@
+﻿title: Start
+---
+<<ShowSprite Right Enfer>>
+<<ShowSprite Left Player>>
+
+<<Focus Left>>
+나: 안녕, 넌 누구야?
+
+<<Focus Right>>
+enfer: 나는 enfer라고 해. 만나서 반가워.
+
+<<Focus Left>>
+나: 여기서 뭘 하고 있어?
+
+-> 묻지 않고 그냥 지나간다.
+    <<Focus Right>>
+    enfer: ...어디 가?
+-> 대답을 기다린다.
+    <<Focus Right>>
+    enfer: 네가 오기를 기다리고 있었지.
+===

@@ -1,14 +1,20 @@
 using System.Xml.Linq;
 using UnityEngine;
+using Yarn.Unity;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public float checkDistance = 0.5f; // 감지 거리
+    public float checkDistance = 4.0f; // 감지 거리
     public LayerMask interactableLayer; // NPC나 사물이 속한 레이어 체크
-    public GameObject dialoguePanel;   // 연결할 UI 패널
 
     private Vector2 lastDirection = Vector2.down; // 마지막으로 바라본 방향
+    private DialogueRunner runner; // Yarn Spinner
 
+    void Start()
+    {
+        // 씬에 있는 DialogueRunner 찾기.
+        runner = FindAnyObjectByType<DialogueRunner>();
+    }
     void Update()
     {
         // 플레이어의 이동 방향 기억 (이동 스크립트의 입력을 활용)
@@ -20,9 +26,9 @@ public class PlayerInteraction : MonoBehaviour
             lastDirection = new Vector2(x, y).normalized;
         }
 
-        if (DialogueManager.instance.isDialogueActive) return;
+        if (runner != null && runner.IsDialogueRunning) return;
 
-        //'Z' 키를 눌렀을 때 레이캐스트
+        //'F' 키를 눌렀을 때 레이캐스트
         if (Input.GetKeyDown(KeyCode.F))
         {
             CheckForInteractable();
