@@ -42,6 +42,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (hit.collider != null)
         {
+            // 맞은 대상에게 NPC1DATA가 있는지 확인
             InteractableObject interactable = hit.collider.GetComponent<InteractableObject>();
 
             if (interactable != null)
