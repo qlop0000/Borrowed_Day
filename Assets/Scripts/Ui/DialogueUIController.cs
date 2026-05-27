@@ -32,6 +32,8 @@ public class DialogueUIController : MonoBehaviour
     public Color normalColor = Color.white; // 기본 밝기 (하얀색 = 원본 색상)
     public Color dimmedColor = new Color(0.4f, 0.4f, 0.4f, 1f); // 어두워졌을 때의 색상 (진한 회색)
 
+    private bool wasOptionActive = false; // 이전 프레임에 선택지가 켜져 있었는지 기억하는 스위치
+
     void Start()
     {
         runner = FindAnyObjectByType<DialogueRunner>();
@@ -57,6 +59,7 @@ public class DialogueUIController : MonoBehaviour
         if (optionsContainer != null && illustrationManager != null)
         {
             bool isOptionActive = false; // 선택지가 떠있는지 확인하는 스위치
+            GameObject firstOptionButton = null;    //대화 선택지 버튼(첫번째)
 
             // OptionsContainer의 자식들을 검사해서 켜진 버튼이 있는지 확인.
             foreach (Transform child in optionsContainer)
@@ -66,9 +69,29 @@ public class DialogueUIController : MonoBehaviour
                 if (child.gameObject.activeSelf && child.name.Contains("Option"))
                 {
                     isOptionActive = true;
+                    if (firstOptionButton == null)
+                    {
+                        firstOptionButton = child.gameObject;
+                    }
                     break;
                 }
             }
+
+            // =================================================================
+            // 이전 프레임에는 선택지가 없었는데, 이번 프레임에 새로 생기면
+            if (isOptionActive && !wasOptionActive)
+            {
+                if (firstOptionButton != null)
+                {
+                    // 유니티 이벤트 시스템 버그 방지를 위해 비움
+                    UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+
+                    // 첫 번째 버튼을 강제로 하이라이트
+                    UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(firstOptionButton);
+                }
+            }
+            wasOptionActive = isOptionActive; // 현재 상태를 기록해서 다음 프레임에 비교
+            // =================================================================
 
             // 켜진 선택지 버튼이 있다면 일러스트를 숨김
             if (isOptionActive)
@@ -78,7 +101,9 @@ public class DialogueUIController : MonoBehaviour
             // 켜진 선택지가 없고, 대화가 진행 중일 때만 일러스트를 다시 켬
             else if (runner != null && runner.IsDialogueRunning)
             {
-                illustrationManager.SetActive(true);
+                // <<ShowSprite>>를 부르지 않은 상태에서는 일러스트창 둘 다 false 이므로 매니저가 켜지지 않음
+                bool hasActiveSprite = leftIllustration.gameObject.activeSelf || rightIllustration.gameObject.activeSelf;
+                illustrationManager.SetActive(hasActiveSprite);
             }
         }
     }
@@ -94,6 +119,9 @@ public class DialogueUIController : MonoBehaviour
         }
 
         Sprite targetSprite = spriteDict[characterName];
+
+        // 일러스트를 띄우기 전에 매니저를 먼저 활성화
+        if (illustrationManager != null) illustrationManager.SetActive(true);
 
         if (position.ToLower() == "left")
         {
@@ -134,5 +162,7 @@ public class DialogueUIController : MonoBehaviour
     {
         leftIllustration.gameObject.SetActive(false);
         rightIllustration.gameObject.SetActive(false);
+
+        if (illustrationManager != null) { illustrationManager.SetActive(false); }
     }
 }

@@ -10,19 +10,21 @@ public class NPCInteract : InteractableObject
     public PlayerMovement playerMovement;
     public bool isDialogueActive = false;
 
-    private DialogueRunner runner;
+    private DialogueRunner dialogueRunner;
 
     void Start()
     {
         // 씬에 있는 DialogueRunner를 자동으로 찾아옵니다.
-        runner = FindAnyObjectByType<DialogueRunner>();
-        // 중요: 대화가 끝났을 때 EndDialogue 함수를 실행할 수 있도록 설정
-        runner.onDialogueComplete.AddListener(EndDialogue);
+        dialogueRunner = FindAnyObjectByType<DialogueRunner>();
+        if (playerMovement == null)
+        {
+            playerMovement = FindAnyObjectByType<PlayerMovement>();
+        }
     }
 
     public override void Interact()
     {
-        if (runner.IsDialogueRunning)
+        if (dialogueRunner.IsDialogueRunning)
         {
             return;
         }
@@ -30,8 +32,9 @@ public class NPCInteract : InteractableObject
         {
             playerMovement.canMove = false; // 플레이어 조작 금지
         }
-
-        runner.StartDialogue(talkNode);
+        // NPC가 실제로 '대화를 시작하는 순간'에만 이벤트를 구독
+        dialogueRunner.onDialogueComplete.AddListener(EndDialogue);
+        dialogueRunner.StartDialogue(talkNode);
     }
 
     // 대화가 끝나는 시점에 자동 호출
@@ -41,18 +44,22 @@ public class NPCInteract : InteractableObject
         {
             playerMovement.canMove = true; // 플레이어 조작 다시 허용
         }
+        if (dialogueRunner != null)
+        {
+            dialogueRunner.onDialogueComplete.RemoveListener(EndDialogue);
+        }
 
         Debug.Log("대화가 종료되어 플레이어 이동이 다시 활성화되었습니다.");
     }
 
-    // 오브젝트가 파괴될 때 리스너를 제거
     private void OnDestroy()
     {
-        if (runner != null)
+        if (dialogueRunner != null)
         {
-            runner.onDialogueComplete.RemoveListener(EndDialogue);
+            dialogueRunner.onDialogueComplete.RemoveListener(EndDialogue);
         }
     }
+
 
 
 }
