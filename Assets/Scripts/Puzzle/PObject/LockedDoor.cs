@@ -1,0 +1,82 @@
+using UnityEngine;
+using Yarn.Unity;
+
+public class LockedDoor : InteractableObject
+{
+    public string requiredItemID = "Key_N1"; // 필요한 열쇠 ID
+    public string openWarpRoomName;          // 열렸을 때 이동할 방 이름
+    public Vector2 openWarpCoordinate;       // 이동할 좌표
+    [Header("잠긴 상태일 때")]
+    public string NodeLock;
+    [Header("열릴 때")]
+    public string NodeUnLock;
+
+    private bool isUnlocked = false;
+    private DialogueRunner dialogueRunner;
+    public PlayerMovement playerMovement;
+
+    private void Start()
+    {
+        dialogueRunner = FindAnyObjectByType<DialogueRunner>();
+        if (playerMovement == null)
+        {
+            playerMovement = FindAnyObjectByType<PlayerMovement>();
+        }
+    }
+    public override void Interact()
+    {
+        InventoryManager inv = FindAnyObjectByType<InventoryManager>();
+        WarpManager warp = FindAnyObjectByType<WarpManager>();
+
+
+        if (isUnlocked)
+        {
+            Debug.Log("열린문");
+            if (warp != null)
+                warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
+            return; 
+        }
+
+        if (playerMovement != null) playerMovement.canMove = false;
+
+        if (inv != null && inv.HasItem(requiredItemID))
+        {
+            Debug.Log("문이 열렸다.");
+            dialogueRunner.StartDialogue(NodeUnLock);
+            isUnlocked = true;
+            inv.RemoveItem(requiredItemID);
+
+            dialogueRunner.onDialogueComplete.AddListener(OnUnlockDialogueComplete);
+        }
+        else
+        {
+            dialogueRunner.StartDialogue(NodeLock);
+            dialogueRunner.onDialogueComplete.AddListener(OnLockDialogueComplete);
+        }
+    }
+    // 문이 열리는 대화
+    private void OnUnlockDialogueComplete()
+    {
+        dialogueRunner.onDialogueComplete.RemoveListener(OnUnlockDialogueComplete);
+
+        // (워프 및 조작 해제)
+        WarpManager warp = FindAnyObjectByType<WarpManager>();
+        if (warp != null)
+        {
+            warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
+        }
+
+        if (playerMovement != null) playerMovement.canMove = true;
+        Debug.Log("문 열림");
+    }
+
+    // 잠긴 문 대화
+    private void OnLockDialogueComplete()
+    {
+        dialogueRunner.onDialogueComplete.RemoveListener(OnLockDialogueComplete);
+
+        // (플레이어 움직임 복구)
+        if (playerMovement != null) playerMovement.canMove = true;
+        Debug.Log("잠겨 있는 문");
+    }
+}

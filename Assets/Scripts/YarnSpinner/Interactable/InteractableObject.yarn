@@ -19,3 +19,13 @@ title: Stage1_Sign
 [안내판] 
 이 앞은 위험하니 초보 모험가는 돌아가시오.
 ===
+
+title: Locked_Door
+---
+문이 잠겨 있다. 특이한 열쇠 구멍이 보인다...
+===
+
+title: UnLock_Door
+---
+문이 열린것 같다
+===
