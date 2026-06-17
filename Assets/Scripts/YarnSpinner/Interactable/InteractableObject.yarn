@@ -22,10 +22,10 @@ title: Stage1_Sign
 
 title: Locked_Door
 ---
-문이 잠겨 있다. 특이한 열쇠 구멍이 보인다...
+이 상태로 나간다면 집 안이 엉망이 될 것이다.
 ===
 
-title: UnLock_Door
+title: Utility_Pole
 ---
-문이 열린것 같다
+전봇대다.
 ===

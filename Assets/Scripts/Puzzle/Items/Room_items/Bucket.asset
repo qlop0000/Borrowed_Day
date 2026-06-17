@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c54563cbe468a84391360abfae67f12, type: 3}
+  m_Name: Bucket
+  m_EditorClassIdentifier: 
+  itemID: Bucket
+  itemName: "\uC591\uB3D9\uC774"
+  description: "\uC591\uB3D9\uC774\uB2E4. \n\uBE57\uBB3C\uC774 \uB5A8\uC5B4\uC9C0\uB294
+    \uACF3\uC5D0 \uB450\uAE30 \uC801\uD569\uD55C\uAC70 \uAC19\uB2E4."
+  itemIcon: {fileID: 3112589160528298819, guid: 0a06596a494f3c44fa7016511f797e7e, type: 3}
+  isInspectable: 0
+  inspectionText: 
+  isCombinable: 0
+  combinableWith: {fileID: 0}
+  combinedResult: {fileID: 0}

@@ -1,20 +1,25 @@
-using UnityEngine;
-using Yarn.Unity; // Yarn Spinner ±â´É »ç¿ë
+ï»¿using UnityEngine;
+using UnityEngine.Events;
+using Yarn.Unity; // Yarn Spinner ê¸°ëŠ¥ ì‚¬ìš©
+using System.Collections;
 
 public class NPCInteract : InteractableObject
 {
-    [Header("Yarn ¼³Á¤")]
-    public string talkNode = "Start"; // ÀÌ NPC¿Í ´ëÈ­ÇÒ ¶§ ½ÇÇàÇÒ Yarn ³ëµå ÀÌ¸§
+    [Header("Yarn ì„¤ì •")]
+    public string talkNode = "Start"; // ì´ NPCì™€ ëŒ€í™”í•  ë•Œ ì‹¤í–‰í•  Yarn ë…¸ë“œ ì´ë¦„
 
-    [Header("ÂüÁ¶")]
+    [Header("ì°¸ì¡°")]
     public PlayerMovement playerMovement;
     public bool isDialogueActive = false;
+
+    [Header("ì´ë™ ê´€ë ¨ UI ì œì–´")]
+    public UnityEvent onMoveStart; 
+    public UnityEvent onMoveEnd; 
 
     private DialogueRunner dialogueRunner;
 
     void Start()
     {
-        // ¾À¿¡ ÀÖ´Â DialogueRunner¸¦ ÀÚµ¿À¸·Î Ã£¾Æ¿É´Ï´Ù.
         dialogueRunner = FindAnyObjectByType<DialogueRunner>();
         if (playerMovement == null)
         {
@@ -30,26 +35,61 @@ public class NPCInteract : InteractableObject
         }
         if (playerMovement != null)
         {
-            playerMovement.canMove = false; // ÇÃ·¹ÀÌ¾î Á¶ÀÛ ±İÁö
+            playerMovement.canMove = false; // í”Œë ˆì´ì–´ ì¡°ì‘ ê¸ˆì§€
         }
-        // NPC°¡ ½ÇÁ¦·Î '´ëÈ­¸¦ ½ÃÀÛÇÏ´Â ¼ø°£'¿¡¸¸ ÀÌº¥Æ®¸¦ ±¸µ¶
+        // NPCê°€ ì‹¤ì œë¡œ 'ëŒ€í™”ë¥¼ ì‹œì‘í•˜ëŠ” ìˆœê°„'ì—ë§Œ ì´ë²¤íŠ¸ë¥¼ êµ¬ë…
         dialogueRunner.onDialogueComplete.AddListener(EndDialogue);
         dialogueRunner.StartDialogue(talkNode);
     }
 
-    // ´ëÈ­°¡ ³¡³ª´Â ½ÃÁ¡¿¡ ÀÚµ¿ È£Ãâ
+    
+    // ì½”ë£¨í‹´(IEnumerator)ì„ ë°˜í™˜í•˜ë©´, NPCê°€ ëª©ì ì§€ì— ë„ì°©í•  ë•Œê¹Œì§€ ìë™ ëŒ€ê¸°
+    [YarnCommand("MoveNPC")]
+    public IEnumerator MoveNPC(string waypointName, float speed)
+    {
+        // ëª©ì ì§€ê°€ ë  ì˜¤ë¸Œì íŠ¸ë¥¼ ì¶”ì 
+        GameObject waypoint = GameObject.Find(waypointName);
+        if (waypoint == null)
+        {
+            Debug.LogError($"[NPC ì´ë™ ì—ëŸ¬] {waypointName}ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŒ");
+            yield break; // ì—†ìœ¼ë©´ ì½”ë£¨í‹´ ì¢…ë£Œ
+        }
+        onMoveStart?.Invoke();
+
+        Vector3 targetPos = waypoint.transform.position;
+
+        // ì¶”í›„ ì• ë‹ˆë©”ì´ì…˜ ì¶”ê°€
+        // Animator anim = GetComponent<Animator>();
+        // if(anim != null) anim.SetBool("isWalking", true);
+
+        // ëª©ì ì§€ì™€ ê°€ê¹Œì›Œì§ˆë•Œê¹Œì§€ ë°˜ë³µ
+        while (Vector3.Distance(transform.position, targetPos) > 0.05f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            yield return null; // ë‹¤ìŒ í”„ë ˆì„ê¹Œì§€ ëŒ€ê¸°
+        }
+
+        // ì¢Œí‘œ ë™ê¸°í™”
+        transform.position = targetPos;
+        // if(anim != null) anim.SetBool("isWalking", false);
+
+        Debug.Log("ì´ë™ ì¢…ë£Œ");
+        onMoveEnd?.Invoke();
+    }
+
+    // ëŒ€í™”ê°€ ëë‚˜ëŠ” ì‹œì ì— ìë™ í˜¸ì¶œ
     private void EndDialogue()
     {
         if (playerMovement != null)
         {
-            playerMovement.canMove = true; // ÇÃ·¹ÀÌ¾î Á¶ÀÛ ´Ù½Ã Çã¿ë
+            playerMovement.canMove = true; // í”Œë ˆì´ì–´ ì¡°ì‘ ë‹¤ì‹œ í—ˆìš©
         }
         if (dialogueRunner != null)
         {
             dialogueRunner.onDialogueComplete.RemoveListener(EndDialogue);
         }
 
-        Debug.Log("´ëÈ­°¡ Á¾·áµÇ¾î ÇÃ·¹ÀÌ¾î ÀÌµ¿ÀÌ ´Ù½Ã È°¼ºÈ­µÇ¾ú½À´Ï´Ù.");
+        Debug.Log("ëŒ€í™”ê°€ ì¢…ë£Œë˜ì–´ í”Œë ˆì´ì–´ ì´ë™ì´ ë‹¤ì‹œ í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤.");
     }
 
     private void OnDestroy()
@@ -59,7 +99,4 @@ public class NPCInteract : InteractableObject
             dialogueRunner.onDialogueComplete.RemoveListener(EndDialogue);
         }
     }
-
-
-
 }
