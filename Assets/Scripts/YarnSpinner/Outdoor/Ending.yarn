@@ -1,0 +1,9 @@
+﻿title: Ending
+---
+<<ShowSprite Right Enfer>>
+<<ShowSprite Left Player>>
+
+<<Focus Right>>
+enfer : 앞쪽은 다음에 탐색하러 오자
+(esc를 누르고 종료하기 버튼을 클릭하면 종료할 수 있습니다.)    
+===

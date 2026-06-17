@@ -1,4 +1,7 @@
+using NUnit;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using Yarn.Unity;
 
 public class LockedDoor : InteractableObject
@@ -11,6 +14,11 @@ public class LockedDoor : InteractableObject
     [Header("열릴 때")]
     public string NodeUnLock;
 
+
+    [Header("행동")]
+    public UnityEvent Event;
+
+    public bool IsUnlocked => isUnlocked;
     private bool isUnlocked = false;
     private DialogueRunner dialogueRunner;
     public PlayerMovement playerMovement;
@@ -28,12 +36,15 @@ public class LockedDoor : InteractableObject
         InventoryManager inv = FindAnyObjectByType<InventoryManager>();
         WarpManager warp = FindAnyObjectByType<WarpManager>();
 
-
         if (isUnlocked)
         {
             Debug.Log("열린문");
             if (warp != null)
+            {
+                Event?.Invoke();
                 warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
+            }
+                
             return; 
         }
 
@@ -58,8 +69,14 @@ public class LockedDoor : InteractableObject
     private void OnUnlockDialogueComplete()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(OnUnlockDialogueComplete);
+        StartCoroutine(WarpSequence());
 
-        // (워프 및 조작 해제)
+        Debug.Log("문 열림");
+    }
+    private IEnumerator WarpSequence()
+    {
+        yield return null;
+
         WarpManager warp = FindAnyObjectByType<WarpManager>();
         if (warp != null)
         {
@@ -67,7 +84,6 @@ public class LockedDoor : InteractableObject
         }
 
         if (playerMovement != null) playerMovement.canMove = true;
-        Debug.Log("문 열림");
     }
 
     // 잠긴 문 대화
@@ -75,8 +91,15 @@ public class LockedDoor : InteractableObject
     {
         dialogueRunner.onDialogueComplete.RemoveListener(OnLockDialogueComplete);
 
-        // (플레이어 움직임 복구)
         if (playerMovement != null) playerMovement.canMove = true;
         Debug.Log("잠겨 있는 문");
+    }
+
+    public void UnlockByPuzzle()
+    {
+        if (isUnlocked) return;
+
+        isUnlocked = true;
+        Debug.Log($"문이 열림");
     }
 }
