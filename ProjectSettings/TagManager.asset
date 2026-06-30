@@ -44,14 +44,14 @@ TagManager:
   - name: Background
     uniqueID: 2147051431
     locked: 0
-  - name: Player
-    uniqueID: 261641289
+  - name: Object
+    uniqueID: 168687239
     locked: 0
   - name: NPC
     uniqueID: 4038902471
     locked: 0
-  - name: Object
-    uniqueID: 168687239
+  - name: Player
+    uniqueID: 261641289
     locked: 0
   m_RenderingLayers:
   - Default
