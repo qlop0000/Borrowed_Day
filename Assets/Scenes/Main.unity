@@ -15358,6 +15358,8 @@ MonoBehaviour:
   openWarpCoordinate: {x: 54, y: 1}
   NodeLock: Locked_Door
   NodeUnLock: UnLock_Door
+  requireDialogueBeforeExit: 1
+  requiredDialogueNodeBeforeExit: Start
   Event:
     m_PersistentCalls:
       m_Calls:
