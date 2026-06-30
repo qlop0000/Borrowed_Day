@@ -1,4 +1,3 @@
-using NUnit;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,22 +5,25 @@ using Yarn.Unity;
 
 public class LockedDoor : InteractableObject
 {
-    public string requiredItemID = "Key_N1"; // 필요한 열쇠 ID
-    public string openWarpRoomName;          // 열렸을 때 이동할 방 이름
-    public Vector2 openWarpCoordinate;       // 이동할 좌표
-    [Header("잠긴 상태일 때")]
+    public string requiredItemID = "Key_N1";
+    public string openWarpRoomName;
+    public Vector2 openWarpCoordinate;
+
+    [Header("Locked")]
     public string NodeLock;
-    [Header("열릴 때")]
+
+    [Header("Unlocked")]
     public string NodeUnLock;
 
-    [Header("NPC Conversation Gate")]
-    public bool requireNpcConversation = true;
-    public string requiredNpcConversationVariable = "$is_npc_moved";
+    [Header("Exit Requirement")]
+    public bool requireDialogueBeforeExit = true;
+    public string requiredDialogueNodeBeforeExit = "Start";
 
-    [Header("행동")]
+    [Header("Action")]
     public UnityEvent Event;
 
     public bool IsUnlocked => isUnlocked;
+
     private bool isUnlocked = false;
     private DialogueRunner dialogueRunner;
     public PlayerMovement playerMovement;
@@ -34,32 +36,41 @@ public class LockedDoor : InteractableObject
             playerMovement = FindAnyObjectByType<PlayerMovement>();
         }
     }
+
     public override void Interact()
     {
         InventoryManager inv = FindAnyObjectByType<InventoryManager>();
         WarpManager warp = FindAnyObjectByType<WarpManager>();
-        if (requireNpcConversation && HasCompletedNpcConversation() == false)
-        {
-            if (playerMovement != null) playerMovement.canMove = true;
-            return;
-        }
 
         if (isUnlocked)
         {
-            Debug.Log("열린문");
+            if (!CanExit())
+            {
+                PlayLockedDialogue();
+                return;
+            }
+
+            Debug.Log("Opened door");
             if (warp != null)
             {
                 Event?.Invoke();
                 warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
             }
 
-            return; 
+            return;
         }
+
         if (playerMovement != null) playerMovement.canMove = false;
 
         if (inv != null && inv.HasItem(requiredItemID))
         {
-            Debug.Log("문이 열렸다.");
+            if (!CanExit())
+            {
+                PlayLockedDialogue();
+                return;
+            }
+
+            Debug.Log("Door unlocked");
             dialogueRunner.StartDialogue(NodeUnLock);
             isUnlocked = true;
             inv.RemoveItem(requiredItemID);
@@ -68,44 +79,45 @@ public class LockedDoor : InteractableObject
         }
         else
         {
+            PlayLockedDialogue();
+        }
+    }
+
+    private bool CanExit()
+    {
+        return !requireDialogueBeforeExit || NPCInteract.HasCompletedTalkNode(requiredDialogueNodeBeforeExit);
+    }
+
+    private void PlayLockedDialogue()
+    {
+        if (playerMovement != null) playerMovement.canMove = false;
+
+        if (dialogueRunner != null && !dialogueRunner.IsDialogueRunning)
+        {
             dialogueRunner.StartDialogue(NodeLock);
             dialogueRunner.onDialogueComplete.AddListener(OnLockDialogueComplete);
+            return;
         }
-    }
 
-    private bool HasCompletedNpcConversation()
-    {
-        if (dialogueRunner == null)
+        if (dialogueRunner == null && playerMovement != null)
         {
-            dialogueRunner = FindAnyObjectByType<DialogueRunner>();
-            if (dialogueRunner == null)
-            {
-                return false;
-            }
+            playerMovement.canMove = true;
         }
-
-        return dialogueRunner.VariableStorage.TryGetValue<bool>(requiredNpcConversationVariable, out bool hasCompleted)
-            && hasCompleted;
     }
 
-    // 문이 열리는 대화
     private void OnUnlockDialogueComplete()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(OnUnlockDialogueComplete);
         StartCoroutine(WarpSequence());
 
-        Debug.Log("문 열림");
+        Debug.Log("Door open dialogue complete");
     }
+
     private IEnumerator WarpSequence()
     {
         yield return null;
 
         WarpManager warp = FindAnyObjectByType<WarpManager>();
-        if (requireNpcConversation && HasCompletedNpcConversation() == false)
-        {
-            if (playerMovement != null) playerMovement.canMove = true;
-            yield break;
-        }
         if (warp != null)
         {
             warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
@@ -114,13 +126,12 @@ public class LockedDoor : InteractableObject
         if (playerMovement != null) playerMovement.canMove = true;
     }
 
-    // 잠긴 문 대화
     private void OnLockDialogueComplete()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(OnLockDialogueComplete);
 
         if (playerMovement != null) playerMovement.canMove = true;
-        Debug.Log("잠겨 있는 문");
+        Debug.Log("Locked door");
     }
 
     public void UnlockByPuzzle()
@@ -128,6 +139,6 @@ public class LockedDoor : InteractableObject
         if (isUnlocked) return;
 
         isUnlocked = true;
-        Debug.Log($"문이 열림");
+        Debug.Log("Door unlocked by puzzle");
     }
 }
