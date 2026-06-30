@@ -1,43 +1,34 @@
+using System.Xml.Linq;
 using UnityEngine;
 using Yarn.Unity;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public float checkDistance = 0.35f;
-    public LayerMask interactableLayer;
+    public float checkDistance = 4.0f; // 감지 거리
+    public LayerMask interactableLayer; // NPC나 사물이 속한 레이어 체크
 
-    [Header("Interaction Collider")]
-    public BoxCollider2D interactionCollider;
-    public Vector2 verticalInteractionSize = new Vector2(0.9f, 0.35f);
-    public Vector2 horizontalInteractionSize = new Vector2(0.35f, 1.1f);
-
-    private Vector2 lastDirection = Vector2.down;
-    private DialogueRunner runner;
-
-    void Awake()
-    {
-        EnsureInteractionCollider();
-        UpdateInteractionCollider();
-    }
+    private Vector2 lastDirection = Vector2.down; // 마지막으로 바라본 방향
+    private DialogueRunner runner; // Yarn Spinner
 
     void Start()
     {
+        // 씬에 있는 DialogueRunner 찾기.
         runner = FindAnyObjectByType<DialogueRunner>();
     }
-
     void Update()
     {
+        // 플레이어의 이동 방향 기억 (이동 스크립트의 입력을 활용)
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
         if (x != 0 || y != 0)
         {
-            lastDirection = GetCardinalDirection(x, y);
-            UpdateInteractionCollider();
+            lastDirection = new Vector2(x, y).normalized;
         }
 
         if (runner != null && runner.IsDialogueRunning) return;
 
+        //'F' 키를 눌렀을 때 레이캐스트
         if (Input.GetKeyDown(KeyCode.F))
         {
             CheckForInteractable();
@@ -46,112 +37,25 @@ public class PlayerInteraction : MonoBehaviour
 
     void CheckForInteractable()
     {
-        EnsureInteractionCollider();
-        UpdateInteractionCollider();
+        // 플레이어 위치에서 바라보는 방향으로 선을 발사
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lastDirection, checkDistance, interactableLayer);
 
-        Vector2 center = interactionCollider.bounds.center;
-        Vector2 size = interactionCollider.bounds.size;
-        Collider2D[] hits = Physics2D.OverlapBoxAll(center, size, 0f, interactableLayer);
-
-        InteractableObject closest = null;
-        float closestDistance = float.MaxValue;
-
-        foreach (Collider2D hit in hits)
+        if (hit.collider != null)
         {
-            InteractableObject interactable = hit.GetComponentInParent<InteractableObject>();
-            if (interactable == null) continue;
+            // 맞은 대상에게 NPC1DATA가 있는지 확인
+            InteractableObject interactable = hit.collider.GetComponent<InteractableObject>();
 
-            float distance = Vector2.Distance(transform.position, hit.bounds.center);
-            if (distance < closestDistance)
+            if (interactable != null)
             {
-                closest = interactable;
-                closestDistance = distance;
+                interactable.Interact(); // 그 사물에 맞는 행동 실행
             }
         }
-
-        if (closest != null)
-        {
-            closest.Interact();
-        }
     }
 
-    void EnsureInteractionCollider()
-    {
-        if (interactionCollider != null) return;
-
-        Transform detector = transform.Find("InteractionDetector");
-        if (detector == null)
-        {
-            GameObject detectorObject = new GameObject("InteractionDetector");
-            detectorObject.transform.SetParent(transform);
-            detector = detectorObject.transform;
-        }
-
-        detector.localRotation = Quaternion.identity;
-        detector.localScale = GetInverseParentScale();
-
-        interactionCollider = detector.GetComponent<BoxCollider2D>();
-        if (interactionCollider == null)
-        {
-            interactionCollider = detector.gameObject.AddComponent<BoxCollider2D>();
-        }
-
-        interactionCollider.isTrigger = true;
-    }
-
-    void UpdateInteractionCollider()
-    {
-        if (interactionCollider == null) return;
-
-        bool isVertical = lastDirection == Vector2.up || lastDirection == Vector2.down;
-        Vector2 size = isVertical ? verticalInteractionSize : horizontalInteractionSize;
-        float forwardOffset = checkDistance + (isVertical ? size.y : size.x) * 0.5f;
-        Vector2 worldOffset = lastDirection * forwardOffset;
-        Vector3 parentScale = transform.lossyScale;
-
-        interactionCollider.transform.localScale = GetInverseParentScale();
-        interactionCollider.transform.localPosition = new Vector3(
-            parentScale.x != 0f ? worldOffset.x / parentScale.x : worldOffset.x,
-            parentScale.y != 0f ? worldOffset.y / parentScale.y : worldOffset.y,
-            0f);
-        interactionCollider.size = size;
-        interactionCollider.offset = Vector2.zero;
-    }
-
-    Vector2 GetCardinalDirection(float x, float y)
-    {
-        if (Mathf.Abs(x) > Mathf.Abs(y))
-        {
-            return x > 0 ? Vector2.right : Vector2.left;
-        }
-
-        return y > 0 ? Vector2.up : Vector2.down;
-    }
-
-    Vector3 GetInverseParentScale()
-    {
-        Vector3 scale = transform.lossyScale;
-        return new Vector3(
-            scale.x != 0f ? 1f / scale.x : 1f,
-            scale.y != 0f ? 1f / scale.y : 1f,
-            scale.z != 0f ? 1f / scale.z : 1f);
-    }
-
+    // 레이 체크를 위한 시각화 코드
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-
-        if (interactionCollider != null)
-        {
-            UpdateInteractionCollider();
-            Gizmos.DrawWireCube(interactionCollider.bounds.center, interactionCollider.bounds.size);
-            return;
-        }
-
-        bool isVertical = lastDirection == Vector2.up || lastDirection == Vector2.down;
-        Vector2 size = isVertical ? verticalInteractionSize : horizontalInteractionSize;
-        float forwardOffset = checkDistance + (isVertical ? size.y : size.x) * 0.5f;
-        Vector3 center = transform.position + (Vector3)(lastDirection * forwardOffset);
-        Gizmos.DrawWireCube(center, size);
+        Gizmos.DrawRay(transform.position, lastDirection * checkDistance);
     }
 }
