@@ -1,0 +1,1235 @@
+fileFormatVersion: 2
+guid: 29eaac38427252e4c8bfe715390752fa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5815075696685555019
+    second: OutDoor_Objects_0
+  - first:
+      213: -856265797615103262
+    second: OutDoor_Objects_1
+  - first:
+      213: -6249489837802217898
+    second: OutDoor_Objects_2
+  - first:
+      213: -3157198227799014777
+    second: OutDoor_Objects_3
+  - first:
+      213: 5111984460815328468
+    second: OutDoor_Objects_4
+  - first:
+      213: -320568639933633652
+    second: OutDoor_Objects_5
+  - first:
+      213: 6124102101045479004
+    second: OutDoor_Objects_6
+  - first:
+      213: 6159062032781795006
+    second: OutDoor_Objects_7
+  - first:
+      213: 6386454303699785764
+    second: OutDoor_Objects_8
+  - first:
+      213: -9162002359071979758
+    second: OutDoor_Objects_9
+  - first:
+      213: 1281474471864552868
+    second: OutDoor_Objects_10
+  - first:
+      213: 4067241283914566127
+    second: OutDoor_Objects_11
+  - first:
+      213: -8200012771915298449
+    second: OutDoor_Objects_12
+  - first:
+      213: 5926390638260782003
+    second: OutDoor_Objects_13
+  - first:
+      213: -758964774786063612
+    second: OutDoor_Objects_14
+  - first:
+      213: -8224093987928446837
+    second: OutDoor_Objects_15
+  - first:
+      213: 3974623229319608883
+    second: OutDoor_Objects_16
+  - first:
+      213: 664099913235753500
+    second: OutDoor_Objects_17
+  - first:
+      213: 7600989301562046552
+    second: OutDoor_Objects_18
+  - first:
+      213: 4440183196025878096
+    second: OutDoor_Objects_19
+  - first:
+      213: 3523832276261927728
+    second: OutDoor_Objects_20
+  - first:
+      213: -1542350662768927542
+    second: OutDoor_Objects_21
+  - first:
+      213: -5168651246233182752
+    second: OutDoor_Objects_22
+  - first:
+      213: 4319229949190004796
+    second: OutDoor_Objects_23
+  - first:
+      213: -4989404361750971612
+    second: OutDoor_Objects_24
+  - first:
+      213: 1712949826675026174
+    second: OutDoor_Objects_25
+  - first:
+      213: -7013860272946059800
+    second: OutDoor_Objects_26
+  - first:
+      213: 5044992428917937073
+    second: OutDoor_Objects_27
+  - first:
+      213: -1461772968355005670
+    second: OutDoor_Objects_28
+  - first:
+      213: 1855836535555008311
+    second: OutDoor_Objects_29
+  - first:
+      213: 806925121476193885
+    second: OutDoor_Objects_30
+  - first:
+      213: 1465423489028103019
+    second: OutDoor_Objects_31
+  - first:
+      213: -691269958578627744
+    second: OutDoor_Objects_32
+  - first:
+      213: -1346402948101855040
+    second: OutDoor_Objects_33
+  - first:
+      213: -1804084058970389384
+    second: OutDoor_Objects_34
+  - first:
+      213: 7792226442217649185
+    second: OutDoor_Objects_35
+  - first:
+      213: -7975306328098447794
+    second: OutDoor_Objects_36
+  - first:
+      213: 3534542627365244339
+    second: OutDoor_Objects_37
+  - first:
+      213: 4722764710915580511
+    second: OutDoor_Objects_38
+  - first:
+      213: -3736617896061194059
+    second: OutDoor_Objects_39
+  - first:
+      213: 6079855199422520879
+    second: OutDoor_Objects_40
+  - first:
+      213: -9092940118592697844
+    second: OutDoor_Objects_41
+  - first:
+      213: -1291663541161381762
+    second: OutDoor_Objects_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OutDoor_Objects_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 243
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b2ec05a673bc4fa0800000000000000
+      internalID: -5815075696685555019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 242
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e2d5d33bceed14f0800000000000000
+      internalID: -856265797615103262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_2
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 243
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65e926e8a1a5549a0800000000000000
+      internalID: -6249489837802217898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 227
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7820c8a70f06f24d0800000000000000
+      internalID: -3157198227799014777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_4
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 226
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d4e63c58ca61f640800000000000000
+      internalID: 5111984460815328468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_5
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 188
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8b20aa358c1d8bf0800000000000000
+      internalID: -320568639933633652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_6
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 210
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c560a0df96e2df450800000000000000
+      internalID: 6124102101045479004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_7
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 209
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebedd856942697550800000000000000
+      internalID: 6159062032781795006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 156
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4285a423a5e31a850800000000000000
+      internalID: 6386454303699785764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_9
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 132
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 217493495670ad080800000000000000
+      internalID: -9162002359071979758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 108
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4adc73c1e36b8c110800000000000000
+      internalID: 1281474471864552868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 81
+        width: 10
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe90887066eb17830800000000000000
+      internalID: 4067241283914566127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_12
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 104
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f69825854d3b33e80800000000000000
+      internalID: -8200012771915298449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_13
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 84
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b30cb9d2e4ce3250800000000000000
+      internalID: 5926390638260782003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_14
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 84
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 403a7d9fe8d9775f0800000000000000
+      internalID: -758964774786063612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 82
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b88691257162edd80800000000000000
+      internalID: -8224093987928446837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_16
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 73
+        width: 27
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33a7c93c4c2b82730800000000000000
+      internalID: 3974623229319608883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_17
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 82
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1ae8cf3a5b573900800000000000000
+      internalID: 664099913235753500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_18
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 81
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 858762d7f732c7960800000000000000
+      internalID: 7600989301562046552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_19
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 51
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056f7c87713be9d30800000000000000
+      internalID: 4440183196025878096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_20
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 54
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03bf5a209ca27e030800000000000000
+      internalID: 3523832276261927728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_21
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 62
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: accd1927e38789ae0800000000000000
+      internalID: -1542350662768927542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_22
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 62
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed146483134548b0800000000000000
+      internalID: -5168651246233182752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_23
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 62
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c30e2b821ccf0fb30800000000000000
+      internalID: 4319229949190004796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_24
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 54
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42b7c010b2312cab0800000000000000
+      internalID: -4989404361750971612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_25
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 62
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef82801bace95c710800000000000000
+      internalID: 1712949826675026174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_26
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 49
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e563d62e33c9ae90800000000000000
+      internalID: -7013860272946059800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_27
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 51
+        width: 17
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b3503472e9630640800000000000000
+      internalID: 5044992428917937073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_28
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 53
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1b7ee6ea3db6bbe0800000000000000
+      internalID: -1461772968355005670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_29
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 51
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 737a2f61f7141c910800000000000000
+      internalID: 1855836535555008311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_30
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 34
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5e6de96f16c23b00800000000000000
+      internalID: 806925121476193885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_31
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 38
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6b980d26ea365410800000000000000
+      internalID: 1465423489028103019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_32
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 26
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b950b92ad1866f0800000000000000
+      internalID: -691269958578627744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_33
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 13
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8a9d9f6ad905de0800000000000000
+      internalID: -1346402948101855040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_34
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 26
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87400285b1b96f6e0800000000000000
+      internalID: -1804084058970389384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_35
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 26
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 124f9c90aac832c60800000000000000
+      internalID: 7792226442217649185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_36
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 35
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e54ca4625025190800000000000000
+      internalID: -7975306328098447794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_37
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 13
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bdc493fac73d0130800000000000000
+      internalID: 3534542627365244339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_38
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 3
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f52afd77b71aa8140800000000000000
+      internalID: 4722764710915580511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_39
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 20
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b0b7eb22ddd42cc0800000000000000
+      internalID: -3736617896061194059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_40
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 19
+        width: 20
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2e1467671cff5450800000000000000
+      internalID: 6079855199422520879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_41
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 4
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0a426b73236fc180800000000000000
+      internalID: -9092940118592697844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OutDoor_Objects_42
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 3
+        width: 27
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e70b0c35ad6131ee0800000000000000
+      internalID: -1291663541161381762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      OutDoor_Objects_0: -5815075696685555019
+      OutDoor_Objects_1: -856265797615103262
+      OutDoor_Objects_10: 1281474471864552868
+      OutDoor_Objects_11: 4067241283914566127
+      OutDoor_Objects_12: -8200012771915298449
+      OutDoor_Objects_13: 5926390638260782003
+      OutDoor_Objects_14: -758964774786063612
+      OutDoor_Objects_15: -8224093987928446837
+      OutDoor_Objects_16: 3974623229319608883
+      OutDoor_Objects_17: 664099913235753500
+      OutDoor_Objects_18: 7600989301562046552
+      OutDoor_Objects_19: 4440183196025878096
+      OutDoor_Objects_2: -6249489837802217898
+      OutDoor_Objects_20: 3523832276261927728
+      OutDoor_Objects_21: -1542350662768927542
+      OutDoor_Objects_22: -5168651246233182752
+      OutDoor_Objects_23: 4319229949190004796
+      OutDoor_Objects_24: -4989404361750971612
+      OutDoor_Objects_25: 1712949826675026174
+      OutDoor_Objects_26: -7013860272946059800
+      OutDoor_Objects_27: 5044992428917937073
+      OutDoor_Objects_28: -1461772968355005670
+      OutDoor_Objects_29: 1855836535555008311
+      OutDoor_Objects_3: -3157198227799014777
+      OutDoor_Objects_30: 806925121476193885
+      OutDoor_Objects_31: 1465423489028103019
+      OutDoor_Objects_32: -691269958578627744
+      OutDoor_Objects_33: -1346402948101855040
+      OutDoor_Objects_34: -1804084058970389384
+      OutDoor_Objects_35: 7792226442217649185
+      OutDoor_Objects_36: -7975306328098447794
+      OutDoor_Objects_37: 3534542627365244339
+      OutDoor_Objects_38: 4722764710915580511
+      OutDoor_Objects_39: -3736617896061194059
+      OutDoor_Objects_4: 5111984460815328468
+      OutDoor_Objects_40: 6079855199422520879
+      OutDoor_Objects_41: -9092940118592697844
+      OutDoor_Objects_42: -1291663541161381762
+      OutDoor_Objects_5: -320568639933633652
+      OutDoor_Objects_6: 6124102101045479004
+      OutDoor_Objects_7: 6159062032781795006
+      OutDoor_Objects_8: 6386454303699785764
+      OutDoor_Objects_9: -9162002359071979758
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
