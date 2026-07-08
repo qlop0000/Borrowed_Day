@@ -1,23 +1,21 @@
-using System.Xml.Linq;
 using UnityEngine;
 using Yarn.Unity;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public float checkDistance = 4.0f; // 감지 거리
-    public LayerMask interactableLayer; // NPC나 사물이 속한 레이어 체크
+    public float checkDistance = 4.0f;
+    public LayerMask interactableLayer;
 
-    private Vector2 lastDirection = Vector2.down; // 마지막으로 바라본 방향
-    private DialogueRunner runner; // Yarn Spinner
+    private Vector2 lastDirection = Vector2.down;
+    private DialogueRunner runner;
 
     void Start()
     {
-        // 씬에 있는 DialogueRunner 찾기.
         runner = FindAnyObjectByType<DialogueRunner>();
     }
+
     void Update()
     {
-        // 플레이어의 이동 방향 기억 (이동 스크립트의 입력을 활용)
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
@@ -28,7 +26,6 @@ public class PlayerInteraction : MonoBehaviour
 
         if (runner != null && runner.IsDialogueRunning) return;
 
-        //'F' 키를 눌렀을 때 레이캐스트
         if (Input.GetKeyDown(KeyCode.F))
         {
             CheckForInteractable();
@@ -37,22 +34,21 @@ public class PlayerInteraction : MonoBehaviour
 
     void CheckForInteractable()
     {
-        // 플레이어 위치에서 바라보는 방향으로 선을 발사
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, lastDirection, checkDistance, interactableLayer);
+        // Skip decorative colliders and interact with the first real target.
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, lastDirection, checkDistance, interactableLayer);
 
-        if (hit.collider != null)
+        foreach (RaycastHit2D hit in hits)
         {
-            // 맞은 대상에게 NPC1DATA가 있는지 확인
             InteractableObject interactable = hit.collider.GetComponent<InteractableObject>();
 
             if (interactable != null)
             {
-                interactable.Interact(); // 그 사물에 맞는 행동 실행
+                interactable.Interact();
+                return;
             }
         }
     }
 
-    // 레이 체크를 위한 시각화 코드
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

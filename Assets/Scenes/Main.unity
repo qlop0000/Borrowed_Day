@@ -6929,7 +6929,7 @@ GameObject:
   - component: {fileID: 1326722433}
   - component: {fileID: 1326722435}
   - component: {fileID: 1326722434}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: isBucketPlaced
   m_TagString: Untagged
   m_Icon: {fileID: 0}
