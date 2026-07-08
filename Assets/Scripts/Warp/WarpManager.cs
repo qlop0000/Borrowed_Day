@@ -9,7 +9,7 @@ public class WarpManager : MonoBehaviour
     [System.Serializable]
     public struct RoomData
     {
-        public string roomName;
+        public string roomName; 
         public GameObject roomObject; // 방 오브젝트 묶음
     }
 
@@ -30,23 +30,23 @@ public class WarpManager : MonoBehaviour
         dialogueRunner = FindAnyObjectByType<DialogueRunner>();
         playerMovement = FindAnyObjectByType<PlayerMovement>();
 
-        // Yarn Spinner에 <<Warp>> 명령어 등록
-        // 문자열(방이름), 문자열(스폰포인트이름)을 인자로 받기
+        // Yarn Spinner에 <<Warp>> 명령어 등록하기
+        // 문자열(방이름), 실수(X), 실수(Y)를 인자로 받기
         if (dialogueRunner != null)
         {
-            dialogueRunner.AddCommandHandler<string, string>("Warp", ExecuteWarp);
+            dialogueRunner.AddCommandHandler<string, float, float>("Warp", ExecuteWarp);
         }
     }
 
     // 외부에서 호출하는 함수. 실제 실행은 내부의 코루틴을 실행
-    public void ExecuteWarp(string targetRoomName, string spawnPointName)
+    public void ExecuteWarp(string targetRoomName, float x, float y)
     {
         if (isWarping) return; // 워프 중일 때 무시
-        StartCoroutine(WarpRoutine(targetRoomName, spawnPointName));
+        StartCoroutine(WarpRoutine(targetRoomName, x, y));
     }
 
     // 코루틴 함수
-    private IEnumerator WarpRoutine(string targetRoomName, string spawnPointName)
+    private IEnumerator WarpRoutine(string targetRoomName, float x, float y)
     {
         isWarping = true;
 
@@ -66,37 +66,16 @@ public class WarpManager : MonoBehaviour
         // fade in 상태에서 잠시 대기 (딜레이 휴식)
         yield return new WaitForSeconds(delayInBlack);
 
-        GameObject targetRoomObject = null;
+        // fade in 상태에서 플레이어 좌표 이동 및 방 교체
+        if (playerMovement != null)
+        {
+            playerMovement.transform.position = new Vector3(x, y, 0);
+        }
 
         foreach (var room in roomList)
         {
-            if (room.roomName == targetRoomName)
-            {
-                room.roomObject.SetActive(true);
-                targetRoomObject = room.roomObject; // 타겟 방 기억
-            }
-            else
-            {
-                room.roomObject.SetActive(false);
-            }
-        }
-
-        // 방 안에서 스폰포인트 좌표 찾아서 워프
-        if (playerMovement != null && targetRoomObject != null)
-        {
-            // 타겟 방의 자식 중 spawnPointName와 일치하는 오브젝트 찾기
-            Transform spawnPointTransform = targetRoomObject.transform.Find(spawnPointName);
-
-            if (spawnPointTransform != null)
-            {
-                playerMovement.transform.position = spawnPointTransform.position;
-            }
-            else
-            {
-                Debug.LogError($"{targetRoomName} 안에서 '{spawnPointName}' 오브젝트를 찾을 수 없습니다.");
-                //못 찾으면 방의 중심점(0,0,0)으로 워프
-                playerMovement.transform.position = targetRoomObject.transform.position;
-            }
+            if (room.roomName == targetRoomName) room.roomObject.SetActive(true);
+            else room.roomObject.SetActive(false);
         }
 
         // 이동 완료 후 잠시 대기 (적응 시간)
