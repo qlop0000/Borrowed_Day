@@ -8,7 +8,7 @@ public class LockedDoor : InteractableObject
 {
     public string requiredItemID = "Key_N1"; // 필요한 열쇠 ID
     public string openWarpRoomName;          // 열렸을 때 이동할 방 이름
-    public string targetSpawnPointName;     // 이동할 워프포인트 이름
+    public Vector2 openWarpCoordinate;       // 이동할 좌표
     [Header("잠긴 상태일 때")]
     public string NodeLock;
     [Header("열릴 때")]
@@ -42,7 +42,7 @@ public class LockedDoor : InteractableObject
             if (warp != null)
             {
                 Event?.Invoke();
-                warp.ExecuteWarp(openWarpRoomName, targetSpawnPointName);
+                warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
             }
                 
             return; 
@@ -80,7 +80,7 @@ public class LockedDoor : InteractableObject
         WarpManager warp = FindAnyObjectByType<WarpManager>();
         if (warp != null)
         {
-            warp.ExecuteWarp(openWarpRoomName, targetSpawnPointName);
+            warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
         }
 
         if (playerMovement != null) playerMovement.canMove = true;
