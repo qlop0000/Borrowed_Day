@@ -3,14 +3,17 @@ using UnityEngine;
 public class DirectWarpObject : InteractableObject
 {
     [Header("이동할 목적지 정보")]
-    public string targetRoomName; // 예: "room"
-    public Vector2 targetCoordinate; // 이동할 X, Y 좌표
+    public string targetRoomName;       // Room
+    public string targetWarpPointName;  // 이동할 목적지 포인트 이름
+
+    [Header("Progress Settings (진도 제어)")]
+    public bool changeProgressOnWarp = false;
+    public int nextProgressValue = 1;
 
     private WarpManager warpManager;
 
     void Start()
     {
-        // WarpManage
         warpManager = FindAnyObjectByType<WarpManager>();
     }
 
@@ -18,12 +21,17 @@ public class DirectWarpObject : InteractableObject
     {
         if (warpManager != null)
         {
-            // 매니저의 워프 기능 실행
-            warpManager.ExecuteWarp(targetRoomName, targetCoordinate.x, targetCoordinate.y);
+            // 진도 제어 유무
+            if (changeProgressOnWarp && ProgressManager.Instance != null)
+            {
+                ProgressManager.Instance.SetProgress(nextProgressValue);
+            }
+
+            warpManager.ExecuteWarp(targetRoomName, targetWarpPointName);
         }
         else
         {
-            Debug.LogError("씬에 WarpManager가 없습니다! 배치했는지 확인하세요.");
+            Debug.LogError("씬에 WarpManager가 없습니다.");
         }
     }
 }

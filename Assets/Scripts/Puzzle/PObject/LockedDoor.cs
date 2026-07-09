@@ -1,24 +1,33 @@
-using NUnit;
-using System.Collections;
+Ôªøusing System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Yarn.Unity;
 
 public class LockedDoor : InteractableObject
 {
-    public string requiredItemID = "Key_N1"; // « ø‰«— ø≠ºË ID
-    public string openWarpRoomName;          // ø≠∑»¿ª ∂ß ¿Ãµø«“ πÊ ¿Ã∏ß
-    public Vector2 openWarpCoordinate;       // ¿Ãµø«“ ¡¬«•
-    [Header("¿·±‰ ªÛ≈¬¿œ ∂ß")]
+    public string requiredItemID = "Key_N1";
+    public string openWarpRoomName;
+    public string openWarpSpawnPointName;
+
+    [Header("NPC Conversation Gate")]
+    public bool requireNpcConversation = true;
+    public string requiredNpcConversationVariable = "$is_npc_moved";
+
+    [Header("Locked")]
     public string NodeLock;
-    [Header("ø≠∏± ∂ß")]
+
+    [Header("Unlocked")]
     public string NodeUnLock;
 
+    [Header("Progress Settings")]
+    public bool increaseProgressOnWarp = false; // ÏßÑÎèÑ Ï¶ùÍ∞Ä Ïó¨Î∂Ä
+    public int targetProgressValue = 2;         // ÏßÑÎèÑ Í∞í Î≥ÄÍ≤Ω
 
-    [Header("«‡µø")]
+    [Header("Action")]
     public UnityEvent Event;
 
     public bool IsUnlocked => isUnlocked;
+
     private bool isUnlocked = false;
     private DialogueRunner dialogueRunner;
     public PlayerMovement playerMovement;
@@ -31,6 +40,7 @@ public class LockedDoor : InteractableObject
             playerMovement = FindAnyObjectByType<PlayerMovement>();
         }
     }
+
     public override void Interact()
     {
         InventoryManager inv = FindAnyObjectByType<InventoryManager>();
@@ -38,21 +48,28 @@ public class LockedDoor : InteractableObject
 
         if (isUnlocked)
         {
-            Debug.Log("ø≠∏∞πÆ");
+            if (requireNpcConversation && !HasCompletedNpcConversation())
+            {
+                if (playerMovement != null) playerMovement.canMove = true;
+                return;
+            }
+
+            Debug.Log("Unlocked door");
             if (warp != null)
             {
                 Event?.Invoke();
-                warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
+                CheckAndApplyProgress(); // ÏßÑÎèÑ Î≥ÄÍ≤Ω Ï≤¥ÌÅ¨
+                warp.ExecuteWarp(openWarpRoomName, openWarpSpawnPointName);
             }
-                
-            return; 
+
+            return;
         }
 
         if (playerMovement != null) playerMovement.canMove = false;
 
         if (inv != null && inv.HasItem(requiredItemID))
         {
-            Debug.Log("πÆ¿Ã ø≠∑»¥Ÿ.");
+            Debug.Log("Door unlocked");
             dialogueRunner.StartDialogue(NodeUnLock);
             isUnlocked = true;
             inv.RemoveItem(requiredItemID);
@@ -65,41 +82,62 @@ public class LockedDoor : InteractableObject
             dialogueRunner.onDialogueComplete.AddListener(OnLockDialogueComplete);
         }
     }
-    // πÆ¿Ã ø≠∏Æ¥¬ ¥Î»≠
+
     private void OnUnlockDialogueComplete()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(OnUnlockDialogueComplete);
         StartCoroutine(WarpSequence());
-
-        Debug.Log("πÆ ø≠∏≤");
     }
+
     private IEnumerator WarpSequence()
     {
         yield return null;
 
         WarpManager warp = FindAnyObjectByType<WarpManager>();
+        if (requireNpcConversation && !HasCompletedNpcConversation())
+        {
+            if (playerMovement != null) playerMovement.canMove = true;
+            yield break;
+        }
+
         if (warp != null)
         {
-            warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
+            CheckAndApplyProgress(); // ÏßÑÎèÑ Î≥ÄÍ≤Ω Ï≤¥ÌÅ¨
+            warp.ExecuteWarp(openWarpRoomName, openWarpSpawnPointName);
         }
 
         if (playerMovement != null) playerMovement.canMove = true;
     }
 
-    // ¿·±‰ πÆ ¥Î»≠
     private void OnLockDialogueComplete()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(OnLockDialogueComplete);
-
         if (playerMovement != null) playerMovement.canMove = true;
-        Debug.Log("¿·∞‹ ¿÷¥¬ πÆ");
     }
 
     public void UnlockByPuzzle()
     {
         if (isUnlocked) return;
-
         isUnlocked = true;
-        Debug.Log($"πÆ¿Ã ø≠∏≤");
+    }
+
+    private void CheckAndApplyProgress()
+    {
+        if (increaseProgressOnWarp && ProgressManager.Instance != null)
+        {
+            ProgressManager.Instance.SetProgress(targetProgressValue);
+        }
+    }
+
+    private bool HasCompletedNpcConversation()
+    {
+        if (dialogueRunner == null)
+        {
+            dialogueRunner = FindAnyObjectByType<DialogueRunner>();
+            if (dialogueRunner == null) return false;
+        }
+
+        return dialogueRunner.VariableStorage.TryGetValue<bool>(requiredNpcConversationVariable, out bool hasCompleted)
+            && hasCompleted;
     }
 }
