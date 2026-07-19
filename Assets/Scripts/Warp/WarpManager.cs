@@ -106,6 +106,31 @@ public class WarpManager : MonoBehaviour
         DetermineAndApplyTone(targetRoomData);
         yield return new WaitForSeconds(delayInBlack);
 
+        // ====== 오브젝트 전환 기능 구현 ======
+        if (VisionManager.Instance != null)
+        {
+            VisionManager.Instance.SetCurrentRoom(targetRoomName);
+        }
+
+        if (playerMovement != null && targetRoomObject != null)
+        {
+            Transform warpPoint = targetRoomObject.transform.Find(targetWarpPointName);
+
+            if (warpPoint != null)
+            {
+                playerMovement.transform.position = warpPoint.position;
+            }
+            else
+            {
+                Debug.LogError($"[WarpManager] {targetRoomName} 내부에서 '{targetWarpPointName}' 오브젝트가 존재하지 않음");
+                playerMovement.transform.position = targetRoomObject.transform.position; // 예외 처리
+            }
+        }
+
+        DetermineAndApplyTone(targetRoomData);
+        yield return new WaitForSeconds(delayInBlack);
+        // ============
+
         // (Fade Out)
         timer = 0f;
         while (timer < fadeDuration)

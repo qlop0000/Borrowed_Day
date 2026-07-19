@@ -83,7 +83,7 @@ title: Choice_Contract
     <<Focus Right>>
     <<ShowSprite Right Enfer_laugh>>
     enfer: 그래! 이제부터 우리 여정의 시작이라고!
-    <<MoveNPC RoomStage/Room/Enfer RoomStage/Room/Point 2.0>>
+    <<MoveNPC Room_Enfer Enfer_Room_Point 2.0>>
     enfer : 이제 지나가도 괜찮아!
     <<set $is_npc_moved = true>>
 -> 아 아니 싫어
