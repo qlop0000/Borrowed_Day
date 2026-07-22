@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5e2ae6544050ede449088b9d12e122b6
+guid: d072cd5f13162ed4ba1e99455a9f64b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5461564807584426319
-    second: Villa2_0
+      213: 5584154989478145108
+    second: bild_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Villa2_0
+      name: bild_2_0
       rect:
         serializedVersion: 2
-        x: 29
+        x: 69
         y: 0
-        width: 74
-        height: 125
+        width: 128
+        height: 242
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b6d72e7ebf9434b0800000000000000
-      internalID: -5461564807584426319
+      spriteID: 45ce1967067ee7d40800000000000000
+      internalID: 5584154989478145108
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Villa2_0: -5461564807584426319
+      bild_2_0: 5584154989478145108
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
