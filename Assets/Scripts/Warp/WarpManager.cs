@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
-
 public class WarpManager : MonoBehaviour
 {
     [System.Serializable]
     public struct RoomData
     {
-        public string roomName; 
+        public string roomName;
         public GameObject roomObject; // 방 오브젝트 묶음
+
+        [Header("조명 설정")]
+        public bool isFixedTone;       // true = 고유의 조명, false = 진도에 따라 유동적 변경
+        public string defaultToneName; // 고정 조명일 때 사용할 톤 이름 ("Default")
     }
 
     [Header("맵 리스트")]
@@ -30,23 +33,26 @@ public class WarpManager : MonoBehaviour
         dialogueRunner = FindAnyObjectByType<DialogueRunner>();
         playerMovement = FindAnyObjectByType<PlayerMovement>();
 
-        // Yarn Spinner에 <<Warp>> 명령어 등록하기
-        // 문자열(방이름), 실수(X), 실수(Y)를 인자로 받기
+        // Yarn Spinner 명령어 (방이름, 워프포인트 이름)
         if (dialogueRunner != null)
         {
-            dialogueRunner.AddCommandHandler<string, float, float>("Warp", ExecuteWarp);
+            dialogueRunner.AddCommandHandler<string, string>("Warp", ExecuteWarp);
+
+            dialogueRunner.AddCommandHandler<int>("SetProgress", (p) => {
+                if (ProgressManager.Instance != null) ProgressManager.Instance.SetProgress(p);
+            });
         }
     }
 
-    // 외부에서 호출하는 함수. 실제 실행은 내부의 코루틴을 실행
-    public void ExecuteWarp(string targetRoomName, float x, float y)
+    // 외부(LockedDoor, DirectWarpObject 등)에서 호출하는 함수
+    public void ExecuteWarp(string targetRoomName, string targetWarpPointName)
     {
         if (isWarping) return; // 워프 중일 때 무시
-        StartCoroutine(WarpRoutine(targetRoomName, x, y));
+        StartCoroutine(WarpRoutine(targetRoomName, targetWarpPointName));
     }
 
     // 코루틴 함수
-    private IEnumerator WarpRoutine(string targetRoomName, float x, float y)
+    private IEnumerator WarpRoutine(string targetRoomName, string targetWarpPointName)
     {
         isWarping = true;
 
@@ -63,23 +69,67 @@ public class WarpManager : MonoBehaviour
         }
         fadeCanvasGroup.alpha = 1f;
 
-        // fade in 상태에서 잠시 대기 (딜레이 휴식)
         yield return new WaitForSeconds(delayInBlack);
 
-        // fade in 상태에서 플레이어 좌표 이동 및 방 교체
-        if (playerMovement != null)
-        {
-            playerMovement.transform.position = new Vector3(x, y, 0);
-        }
+        RoomData targetRoomData = new RoomData();
+        GameObject targetRoomObject = null;
 
         foreach (var room in roomList)
         {
-            if (room.roomName == targetRoomName) room.roomObject.SetActive(true);
-            else room.roomObject.SetActive(false);
+            if (room.roomName == targetRoomName)
+            {
+                room.roomObject.SetActive(true);
+                targetRoomObject = room.roomObject; // 위치 검색용 오브젝트 저장
+                targetRoomData = room;              // 조명 데이터 저장
+            }
+            else
+            {
+                room.roomObject.SetActive(false);
+            }
         }
 
-        // 이동 완료 후 잠시 대기 (적응 시간)
+        if (playerMovement != null && targetRoomObject != null)
+        {
+            Transform warpPoint = targetRoomObject.transform.Find(targetWarpPointName);
+
+            if (warpPoint != null)
+            {
+                playerMovement.transform.position = warpPoint.position;
+            }
+            else
+            {
+                Debug.LogError($"[WarpManager] {targetRoomName} 내부에서 '{targetWarpPointName}' 오브젝트를 찾을 수 없습니다!");
+                playerMovement.transform.position = targetRoomObject.transform.position; // 예외 처리
+            }
+        }
+
+        DetermineAndApplyTone(targetRoomData);
         yield return new WaitForSeconds(delayInBlack);
+
+        // ====== 오브젝트 전환 기능 구현 ======
+        if (VisionManager.Instance != null)
+        {
+            VisionManager.Instance.SetCurrentRoom(targetRoomName);
+        }
+
+        if (playerMovement != null && targetRoomObject != null)
+        {
+            Transform warpPoint = targetRoomObject.transform.Find(targetWarpPointName);
+
+            if (warpPoint != null)
+            {
+                playerMovement.transform.position = warpPoint.position;
+            }
+            else
+            {
+                Debug.LogError($"[WarpManager] {targetRoomName} 내부에서 '{targetWarpPointName}' 오브젝트가 존재하지 않음");
+                playerMovement.transform.position = targetRoomObject.transform.position; // 예외 처리
+            }
+        }
+
+        DetermineAndApplyTone(targetRoomData);
+        yield return new WaitForSeconds(delayInBlack);
+        // ============
 
         // (Fade Out)
         timer = 0f;
@@ -94,5 +144,27 @@ public class WarpManager : MonoBehaviour
         // 플레이어 조작 허용 및 워프 락 해제
         if (playerMovement != null) playerMovement.canMove = true;
         isWarping = false;
+    }
+
+    // 조명 변경 부분
+    private void DetermineAndApplyTone(RoomData targetRoomData)
+    {
+        AtmosphereManager atmosphereManager = FindAnyObjectByType<AtmosphereManager>();
+
+        if (atmosphereManager == null) return;
+
+        // 방이라면 진도에 상관없이 조정
+        if (targetRoomData.isFixedTone)
+        {
+            atmosphereManager.ChangeTone(targetRoomData.defaultToneName, 0f);
+        }
+        // Outdoor일 때 ProgressManager의 진도에 따라 변경
+        else
+        {
+            if (ProgressManager.Instance != null)
+            {
+                ProgressManager.Instance.UpdateCurrentAtmosphere(0f);
+            }
+        }
     }
 }

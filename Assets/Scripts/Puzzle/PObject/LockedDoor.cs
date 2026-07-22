@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using Yarn.Unity;
@@ -7,7 +7,7 @@ public class LockedDoor : InteractableObject
 {
     public string requiredItemID = "Key_N1";
     public string openWarpRoomName;
-    public Vector2 openWarpCoordinate;
+    public string openWarpSpawnPointName;
 
     [Header("NPC Conversation Gate")]
     public bool requireNpcConversation = true;
@@ -18,6 +18,10 @@ public class LockedDoor : InteractableObject
 
     [Header("Unlocked")]
     public string NodeUnLock;
+
+    [Header("Progress Settings")]
+    public bool increaseProgressOnWarp = false; // 진도 증가 여부
+    public int targetProgressValue = 2;         // 진도 값 변경
 
     [Header("Action")]
     public UnityEvent Event;
@@ -54,7 +58,8 @@ public class LockedDoor : InteractableObject
             if (warp != null)
             {
                 Event?.Invoke();
-                warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
+                CheckAndApplyProgress(); // 진도 변경 체크
+                warp.ExecuteWarp(openWarpRoomName, openWarpSpawnPointName);
             }
 
             return;
@@ -82,8 +87,6 @@ public class LockedDoor : InteractableObject
     {
         dialogueRunner.onDialogueComplete.RemoveListener(OnUnlockDialogueComplete);
         StartCoroutine(WarpSequence());
-
-        Debug.Log("Door opened");
     }
 
     private IEnumerator WarpSequence()
@@ -99,7 +102,8 @@ public class LockedDoor : InteractableObject
 
         if (warp != null)
         {
-            warp.ExecuteWarp(openWarpRoomName, openWarpCoordinate.x, openWarpCoordinate.y);
+            CheckAndApplyProgress(); // 진도 변경 체크
+            warp.ExecuteWarp(openWarpRoomName, openWarpSpawnPointName);
         }
 
         if (playerMovement != null) playerMovement.canMove = true;
@@ -108,17 +112,33 @@ public class LockedDoor : InteractableObject
     private void OnLockDialogueComplete()
     {
         dialogueRunner.onDialogueComplete.RemoveListener(OnLockDialogueComplete);
-
         if (playerMovement != null) playerMovement.canMove = true;
-        Debug.Log("Door is locked");
     }
 
     public void UnlockByPuzzle()
     {
         if (isUnlocked) return;
-
         isUnlocked = true;
-        Debug.Log("Door unlocked by event");
+    }
+
+    private void CheckAndApplyProgress()
+    {
+        if (increaseProgressOnWarp && ProgressManager.Instance != null)
+        {
+            ProgressManager.Instance.SetProgress(targetProgressValue);
+        }
+    }
+
+    private bool HasCompletedNpcConversation()
+    {
+        if (dialogueRunner == null)
+        {
+            dialogueRunner = FindAnyObjectByType<DialogueRunner>();
+            if (dialogueRunner == null) return false;
+        }
+
+        return dialogueRunner.VariableStorage.TryGetValue<bool>(requiredNpcConversationVariable, out bool hasCompleted)
+            && hasCompleted;
     }
 
     private bool HasCompletedNpcConversation()
