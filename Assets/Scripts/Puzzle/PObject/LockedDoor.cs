@@ -141,18 +141,4 @@ public class LockedDoor : InteractableObject
             && hasCompleted;
     }
 
-    private bool HasCompletedNpcConversation()
-    {
-        if (dialogueRunner == null)
-        {
-            dialogueRunner = FindAnyObjectByType<DialogueRunner>();
-            if (dialogueRunner == null)
-            {
-                return false;
-            }
-        }
-
-        return dialogueRunner.VariableStorage.TryGetValue<bool>(requiredNpcConversationVariable, out bool hasCompleted)
-            && hasCompleted;
-    }
 }
