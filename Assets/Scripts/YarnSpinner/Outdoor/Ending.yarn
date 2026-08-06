@@ -4,6 +4,28 @@
 <<ShowSprite Left Player>>
 
 <<Focus Right>>
-enfer : 앞쪽은 다음에 탐색하러 오자
-(esc를 누르고 종료하기 버튼을 클릭하면 종료할 수 있습니다.)    
+<<ShowSprite Right Enfer_laugh>>
+enfer : 우리의 여정을 알리는 첫 미션은 
+enfer : 아파트에 있는 귀신이야
+<<ShowSprite Right Enfer>>
+enfer : 여러 힘든 사정으로 인해 스스로 목숨을 끊은 녀석이지
+enfer : 원래 규정상 스스로 목숨을 끊은 귀신은 바로 데리고 가야 하지만
+enfer : 한 맺힌 귀신은 다른 사신들이 꺼리는 경향이 있어서 말이야
+<<Focus Left>>
+나 : 왜 꺼리는데?
+<<Focus Right>>
+enfer : 보통 한 맺힌 귀신은 일반적인 귀신들과 달리 힘을 가져
+enfer : 무슨 힘을 가지고 있는지 모르기도 하고
+enfer : 엄청 쎈 녀석이면 낮은 등급의 사신들은 고전하기도 하니까
+<<Focus Left>>
+나 : 그러면 처음부터 위험한 녀석을 상대하라고?
+<<Focus Right>>
+<<ShowSprite Right Enfer_laugh>>
+enfer : 너와 계약한 이 'enfer'님을 냩보지 말라고
+enfer : 계약으로 내 힘의 일부를 너도 쓸 수 있어
+<<ShowSprite Right Enfer>>
+enfer : 일반적인 인간이라면 힘들겠지만
+enfer : 지금의 너라면 저정도의 귀신 정도는 충분히 해볼만 할거야
+<<ShowSprite Right Enfer_laugh>>
+enfer : 그러면 출발해보자고!
 ===
